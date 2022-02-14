@@ -1,0 +1,15 @@
+{
+    "description": "[百度统计插件]chrome-extension",
+    "version": "0.0.1",
+    "name": "百度统计插件测试",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_icon": "32x32.png"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://hmcdn.baidu.com; object-src 'self'"
+}

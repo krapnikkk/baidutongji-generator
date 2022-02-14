@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>百度统计插件生成器</title>
+    <script type="text/javascript" src="hm.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #container {
+        width: 1000px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body onload="main()">
+    <header style="background-color: #333;padding: 10px;margin-bottom: 20px;">
+        <section style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 1000px;margin: auto;">
+            <h1 style="color: #fff;">百度统计插件生成器</h1>
+            <iframe src="https://ghbtns.com/github-btn.html?user=krapnikkk&repo=baidutongji-generator&type=star" frameborder="0" scrolling="0" width="90px" height="21px"></iframe>
+        </section>    
+    </header>
+    <section id="container">
+        <section>
+            <section class="panel panel-default">
+            <section class="panel-body">
+                <p style="font-weight: 700; font-size: 18px;">本工具用于辅助生成百度统计插件在file和chrome-extension等协议环境下【如：electron、chrome extension】能正常上报统计信息的本地插件文件。</p>
+            </section>
+            </section>
+        </section>
+      <section>
+        <h3>登录百度统计官网新增网站:</h3>
+        <a href="https://tongji.baidu.com/" target="_blank">点击登录百度统计官网</a>
+      </section>
+      <section>
+        <h3>加载并手动复制百度统计插件代码：</h3>
+        <textarea
+          class="form-control"
+          name="code"
+          id="code"
+          placeholder="请输入百度统计获取到的统计代码。参考：
+        <script\>
+        var _hmt = _hmt || [];
+        (function() {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?3f46885080d327e37b00c5879a6f0fb5';
+        var s = document.getElementsByTagName('script')[0]; 
+        s.parentNode.insertBefore(hm, s);
+        })();
+        </script\>"
+          cols="80"
+          rows="10"
+        ></textarea>
+        <button class="btn btn-primary" style="margin: 10px;" type="button" id="load">加载插件</button>
+      </section>
+      <section>
+        <h3>黏贴百度统计插件代码并生成本地文件：</h3>
+        <textarea
+          class="form-control"
+          id="source"
+          name="code"
+          placeholder="请输入弹窗加载的插件代码"
+          cols="80"
+          rows="10"
+        ></textarea>
+        <button id="download" class="btn btn-primary" style="margin: 10px;" type="button">生成插件</button>
+      </section>
+      <section>
+        <h3>使用说明：</h3>
+        <p>将下载到的hm.js文件通过script标签的形式引入插件即可使用</p>
+        <!-- <p> -->
+          <pre>&lt;script type="text/javascript" src="hm.js"&gt;&lt;/script&gt;</pre>
+        <!-- </p> -->
+        <p>在chrome-extension中需要在manifest.json中添加以下配置</p>
+            <pre>"content_security_policy": "script-src 'self' 'unsafe-eval' https://hmcdn.baidu.com; object-src 'self'"</pre>
+        
+      </section>
+      <section>
+          <h3>修改说明：</h3>
+          <p>本工具对原插件代码做了以下调整：</p>
+            <pre>
+                document.location.hostname调整为新增网站时的网站域名
+                document.location.host调整为新增网站时的网站域名
+                document.location.href调整为url中最后的一个字符"/"后面的路径替换，例：
+                chrome-extension://dndaohhicbniphflgbkbmmnhkfmeiocg/index.html?source=chrome-extension
+                替换为
+                https://a.com/index.html?source=chrome-extension
+                代码中的`/https?:/.test(document.location.protocol)`替换为`true`,直接不校验协议
+            </pre>
+      </section>
+    </section>
+    <footer style="text-align: center;color: #333; margin: 10px;">©krapnik</footer>
+  </body>
+</html>
