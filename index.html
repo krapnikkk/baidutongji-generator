@@ -82,19 +82,16 @@
         
       </section>
       <section>
-          <h3>修改说明：</h3>
-          <p>本工具对原插件代码做了以下调整：</p>
-            <pre>
-                document.location.hostname调整为新增网站时的网站域名
-                document.location.host调整为新增网站时的网站域名
-                document.location.href调整为url中最后的一个字符"/"后面的路径替换，例：
-                chrome-extension://dndaohhicbniphflgbkbmmnhkfmeiocg/index.html?source=chrome-extension
-                替换为
-                https://a.com/index.html?source=chrome-extension
-                代码中的`/https?:/.test(document.location.protocol)`替换为`true`,直接不校验协议
-            </pre>
+          <h3>开发日志：</h3>
+          <a href="https://krapnikkk.github.io/2022/02/14/baidutongji-generator/" target="_blank">点击跳转</a>
       </section>
     </section>
-    <footer style="text-align: center;color: #333; margin: 10px;">©krapnik</footer>
+    <footer style="text-align: center;
+    color: #333;
+    margin: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: 50%;">©krapnik</footer>
   </body>
 </html>
